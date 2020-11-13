@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 let loaf = {
@@ -75,4 +76,19 @@ function decodeWord(string){
   }
 }
 
-decodeWord('apply animal beyond creature tired hello!');
+decodeWord('Check to see if this works with apples, banananas, chaples, and alphabets.');
+
+function createCharacter(name, nickname, race, origin, attack, defense){
+  if(!name || !nickname || !race || !origin || !attack || !defense){
+    throw new TypeError('Missing needed info!');
+  }
+  return {
+    name,
+    nickname,
+    race,
+    origin,
+    attack,
+    defense,
+    describe: function(){console.log(`${name} is ${race} from ${origin}.`);}
+  };
+}
