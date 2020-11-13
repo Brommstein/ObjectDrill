@@ -1,6 +1,16 @@
 /* eslint-disable no-console */
 'use strict';
 
+const HEROES = [
+  { id: 1, name: 'Captain America', squad: 'Avengers' },
+  { id: 2, name: 'Iron Man', squad: 'Avengers' },
+  { id: 3, name: 'Spiderman', squad: 'Avengers' },
+  { id: 4, name: 'Superman', squad: 'Justice League' },
+  { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
+  { id: 6, name: 'Aquaman', squad: 'Justice League' },
+  { id: 7, name: 'Hulk', squad: 'Avengers' },
+];
+
 let loaf = {
   flour: 300,
   water: 210,
@@ -89,6 +99,47 @@ function createCharacter(name, nickname, race, origin, attack, defense){
     origin,
     attack,
     defense,
-    describe: function(){console.log(`${name} is ${race} from ${origin}.`);}
+    describe: function(){console.log(`${name} is a(n) ${race} from ${origin}.`);},
+    evaluateFight: function(character){
+      let x = 0;
+      let y = 0;
+      if (this.attack > character.defense){
+        x = this.attack - character.defense;
+      }
+      if (this.defense < character.attack){
+        y = character.attack - this.defense;
+      }
+      return `Your opponent takes ${x} damage and you receive ${y} damage.`;
+    }
   };
 }
+
+let characters = [
+  createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6),
+  createCharacter('Bilbo Baggins','bilbo','Hobbit','The Shire', 2, 1),
+  createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2),
+  createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8),
+  createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5)
+];
+
+characters.push(createCharacter('Arwen Undomiel', 'arwen', 'Half-Elf', 'Rivendell', 7, 10));
+
+console.log(characters);
+
+let found = characters.find(function(characters){
+  return characters.nickname === 'aragorn';
+});
+
+console.log(found.describe(this.name, this.race, this.origin));
+
+let bestRace = characters.filter(function(characters){
+  return characters.race === 'Hobbit';
+});
+
+console.log(bestRace);
+
+let strongest = characters.filter(function(characters){
+  return characters.attack > 5;
+});
+
+console.log(strongest);
